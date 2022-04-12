@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TP18AndroidFragmentPracticeJava">
         <activity
-            android:name=".CategoriesActivity"
+            android:name=".CategoriesDetailActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
