@@ -52,6 +52,9 @@ public class CategoriesFragment extends Fragment {
                             intent.putExtra("categorieIndex",
                                     position);
                             startActivity(intent);
+                        }else {
+                            ((MainActivity)getActivity()).positionLand=position;
+
                         }
                     }
                 }
