@@ -1,1 +1,30 @@
 = TP 18 Android Fragment Practice Java
+
+== Modus operandi
+création d'un fragment, genere une classe +
+et un layout xml associé.
+.suppréssion du code par défaut, pour ne garder que : +
+1 - le constructeur vide(en java)
+2 - la methode onCreateView(LayoutInflater, ViewGroup,Bundle) +
+
+creer la vue au sein de la methode onCreateView +
+on inflate la view avec l'inflater fournis en parametre. tel que :
+[ source,java]
+----
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(fragment_categories,
+                container,
+                false);
+        ListView categoriesListView = view.findViewById(categories_view);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                view.getContext(),
+                simple_list_item_1,
+                categories
+        );
+        categoriesListView.setAdapter(adapter);
+        return view;
+    }
+----
+c'est l'objet view qui nous permettra de faire des findViewById et des appel au context.
