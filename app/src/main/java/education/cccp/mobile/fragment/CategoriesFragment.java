@@ -3,6 +3,7 @@ package education.cccp.mobile.fragment;
 import static android.R.layout.simple_list_item_1;
 
 import static education.cccp.mobile.fragment.Data.categories;
+import static education.cccp.mobile.fragment.R.id.categories_view;
 import static education.cccp.mobile.fragment.R.layout.fragment_categories;
 
 import android.os.Bundle;
@@ -22,21 +23,17 @@ public class CategoriesFragment extends Fragment {
     public CategoriesFragment() {
     }
 
-    private ListView categoriesListView;
-    private ArrayAdapter<String[]> adapter;
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(fragment_categories,
                 container,
                 false);
-        categoriesListView = view.findViewById(R.id.categories_view);
-        adapter = new ArrayAdapter<>(
+        ListView categoriesListView = view.findViewById(categories_view);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 view.getContext(),
                 simple_list_item_1,
-                Collections.singletonList(categories)
+                categories
         );
         categoriesListView.setAdapter(adapter);
         return view;
