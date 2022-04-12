@@ -1,16 +1,16 @@
 package education.cccp.mobile.fragment;
 
-import androidx.appcompat.app.AppCompatActivity;
+import static education.cccp.mobile.fragment.R.layout.activity_main;
 
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        setContentView(R.layout.activity_main);
-
+        setContentView(activity_main);
     }
 }
