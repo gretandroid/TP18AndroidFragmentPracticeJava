@@ -6,6 +6,7 @@ import static education.cccp.mobile.fragment.R.id.categorie_details_view;
 import static education.cccp.mobile.fragment.R.layout.fragment_categorie_detail;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -28,20 +29,35 @@ public class CategorieDetailFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Intent intent = getActivity().getIntent();
-        String[] detail = intent.getStringArrayExtra("article");
-        int idxCat=intent.getIntExtra("categorieIndex",-1);
-        // Inflate the layout for this fragment
+        int idxCat;
         View view = inflater.inflate(fragment_categorie_detail,
                 container,
                 false);
         ListView categorieDetailsListView = view.findViewById(categorie_details_view);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                view.getContext(),
-                simple_list_item_1,
-                detail
-        );
-        categorieDetailsListView.setAdapter(adapter);
+        if (getContext().getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            Intent intent = getActivity().getIntent();
+            String[] detail = intent.getStringArrayExtra("article");
+            idxCat = intent.getIntExtra("categorieIndex", -1);
+            // Inflate the layout for this fragment
+
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                    view.getContext(),
+                    simple_list_item_1,
+                    detail
+            );
+
+            categorieDetailsListView.setAdapter(adapter);
+        } else {
+            idxCat = 0;
+
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                    view.getContext(),
+                    simple_list_item_1,
+                    Data.articles[idxCat]
+            );
+            categorieDetailsListView.setAdapter(adapter);
+        }
+
 //        view.setOnKeyListener(
 //                new View.OnKeyListener() {
 //                    @Override

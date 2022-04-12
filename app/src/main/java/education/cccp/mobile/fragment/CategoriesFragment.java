@@ -7,6 +7,7 @@ import static education.cccp.mobile.fragment.R.id.categories_view;
 import static education.cccp.mobile.fragment.R.layout.fragment_categories;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +29,7 @@ public class CategoriesFragment extends Fragment {
         View view = inflater.inflate(fragment_categories,
                 container,
                 false);
+
         ListView categoriesListView = view.findViewById(categories_view);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 view.getContext(),
@@ -42,15 +44,15 @@ public class CategoriesFragment extends Fragment {
                                             View view,
                                             int position,
                                             long id) {
-                        Intent intent = new Intent(getActivity(),
-                                CategoriesDetailActivity.class);
-                        intent.putExtra("article",
-                                articles[position]);
-                        intent.putExtra("categorieIndex",
-                                position);
-
-                        startActivity(intent);
-
+                        if (getContext().getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                            Intent intent = new Intent(getActivity(),
+                                    CategoriesDetailActivity.class);
+                            intent.putExtra("article",
+                                    articles[position]);
+                            intent.putExtra("categorieIndex",
+                                    position);
+                            startActivity(intent);
+                        }
                     }
                 }
         );
